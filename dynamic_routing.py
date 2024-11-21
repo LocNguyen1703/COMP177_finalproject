@@ -6,8 +6,18 @@ def Dijkstra(matrix, root, dest):
     # return NotImplementedError
     return nx.dijkstra_path(matrix, root, dest)
 
-edge_list = [(1, 2), (2, 3), (2, 5), (3, 4), (4, 5), (5, 6), (6, 7)]
-graph = nx.from_edgelist(edgelist=edge_list)
+nparr = np.array([[0, 1, 0, 0, 0, 0, 0, 0],
+                  [1, 0, 1, 0, 1, 0, 0, 0],
+                  [0, 1, 0, 1, 0, 0, 0, 0],
+                  [1, 0, 0, 0, 0, 0, 0, 1],
+                  [0, 1, 0, 0, 0, 0, 0, 0],
+                  [1, 0, 0, 0, 0, 0, 0, 1],
+                  [1, 1, 0, 0, 0, 0, 0, 1],
+                  [0, 0, 0, 1, 0, 1, 1, 0]
+                ])
+edge_list = [(i, j) for i in range(len(nparr)) for j in range(len(nparr[i])) if nparr[i][j] == 1]
+
+graph = nx.from_numpy_array(nparr)
 
 shortestPathNodes = Dijkstra(graph, 4, 7)
 
