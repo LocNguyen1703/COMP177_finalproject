@@ -1,11 +1,17 @@
 import numpy as np 
 import matplotlib.pyplot as plt
 import networkx as nx
+import random
 
-def Dijkstra(matrix, root, dest):
-    # return NotImplementedError
-    return nx.dijkstra_path(matrix, root, dest)
-'''                0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19'''
+def Dijkstra(graph, root, dest):
+    try:
+        return nx.dijkstra_path(graph, root, dest)
+    except nx.NodeNotFound:
+        return None
+    except nx.NetworkXNoPath:
+        return None
+
+# Adjacency matrix
 nparr = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], # 0
                   [1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0], # 1
                   [0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # 2
@@ -25,38 +31,43 @@ nparr = np.array([[0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], 
                   [0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0], # 16
                   [0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0], # 17
                   [0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0], # 18
-                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0] # 19
+                  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0]  # 19
                 ])
 
-# Convert adjacency matrix to a graph
+# Convert adjacency matrix to graph
 graph = nx.from_numpy_array(nparr)
-graph_5_down = nx.from_numpy_array(nparr)
-graph_7_down = nx.from_numpy_array(nparr)
 
-# Simulate node shutdown (e.g., node 4)
-nodes_to_remove_5 = [1, 3, 4, 11, 12]
+# Create separate copies for failures
+graph_5_down = graph.copy()
+graph_7_down = graph.copy()
 
-nodes_to_remove_7 = [1, 3, 4, 11, 12]
+# Remove 5 nodes randomly
+nodes_to_remove_5 = random.sample(range(20), 5)
+for node in nodes_to_remove_5:
+    graph_5_down.remove_node(node)
 
-for node_to_remove in nodes_to_remove_5:
-    graph_5_down.remove_node(node_to_remove)
+# Remove 7 nodes randomly
+nodes_to_remove_7 = random.sample(range(20), 7)
+for node in nodes_to_remove_7:
+    graph_7_down.remove_node(node)
 
-for node_to_remove in nodes_to_remove_7:
-    graph_7_down.remove_node(node_to_remove)
+# Helper function to check shortest path and visualize
+def visualize_path(graph, title):
+    if 0 in graph.nodes and 19 in graph.nodes:
+        shortestPathNodes = Dijkstra(graph, 0, 19)
+        if shortestPathNodes:
+            print(f"{title} Shortest path: {shortestPathNodes}")
+            shortestPathEdges = tuple(zip(shortestPathNodes[:-1], shortestPathNodes[1:]))
+            edge_colors = ['r' if edge in shortestPathEdges or (edge[1], edge[0]) in shortestPathEdges else 'b' for edge in graph.edges]
+            nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, edge_color=edge_colors)
+            plt.title(title)
+            plt.show()
+        else:
+            print(f"{title}: No path exists between 0 and 19.")
+    else:
+        print(f"{title}: Node 0 or 19 not in graph.")
 
-# Attempt to compute shortest path from 0 to 19
-try:
-    shortestPathNodes = Dijkstra(graph, 0, 19)
-    print("Shortest path:", shortestPathNodes)
-
-    # Compute edges in the shortest path
-    shortestPathEdges = tuple(zip(shortestPathNodes[:-1], shortestPathNodes[1:]))
-
-    # Visualize graph
-    edge_colors = ['r' if edge in shortestPathEdges or (edge[1], edge[0]) in shortestPathEdges else 'b' for edge in graph.edges]
-    nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, edge_color=edge_colors)
-    plt.axis("equal")
-    plt.show()
-
-except nx.NetworkXNoPath:
-    print(f"No path exists between nodes 0 and 19 after removing node {node_to_remove}.")
+# Visualize the results
+visualize_path(graph, "Original Graph")
+visualize_path(graph_5_down, "Graph with 5 Nodes Removed")
+visualize_path(graph_7_down, "Graph with 7 Nodes Removed")
