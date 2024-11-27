@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 import networkx as nx
 import random
 
+
 def Dijkstra(graph, root, dest):
     try:
         return nx.dijkstra_path(graph, root, dest)
