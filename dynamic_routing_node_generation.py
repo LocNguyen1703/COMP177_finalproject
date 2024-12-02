@@ -44,25 +44,37 @@ def simulateBreakdown(graph, pEdges, pNodes):
 """
 generateMatrix(x, y) 
     - x is for matrix's dimensions (adjacency matrix as to have equal width and height)
-    - y is for choice of generation method
+    - y is for choice of generation method 
+        - 1: uses np.random.randint
+        - 2: uses nested for loop
 """
-nparr = generateMatrix(9, 2)  
+numNodes = int(input("Enter the number of nodes: "))
+choice = int(input(
+    "Enter 1 or 2 for choice of matrix generation method: \nenter 1 for np.random.randint\nenter 2 for nested for loop\n"))
+
+nparr = generateMatrix(numNodes, choice)  
 graph = nx.from_numpy_array(nparr)
-shortestPathNodes = Dijkstra(graph, 2, 8)
+
+startNode = int(input("Enter the sender's node: "))
+endNode = int(input("Enter the receiver's node: "))
+
+shortestPathNodes = Dijkstra(graph, startNode, endNode)
 
 if not shortestPathNodes: print("No shortest path found.")
 else:
-    plt.figure(1)
+    plt.figure("original network")
     shortestPathEdges = tuple(zip(shortestPathNodes[:-1], shortestPathNodes[1:]))
     edge_colors = ['r' if edge in shortestPathEdges or (edge[1], edge[0]) in shortestPathEdges else 'b' for edge in graph.edges]
     nx.draw(graph, pos=nx.circular_layout(graph), with_labels=True, edge_color=edge_colors)
 
-graph2 = simulateBreakdown(graph, 0, 20)
-shortestPathNodes2 = Dijkstra(graph2, 2, 8)
+percentSabotage = int(input("Enter the percentage (in normal integer) of edges to sabotage: "))
+
+graph2 = simulateBreakdown(graph, 0, percentSabotage)
+shortestPathNodes2 = Dijkstra(graph2, startNode, endNode)
 
 if not shortestPathNodes2: print("No shortest path found after sabotage.")
 else: 
-    plt.figure(2)
+    plt.figure("network after sabotage")
     shortestPathEdges2 = tuple(zip(shortestPathNodes2[:-1], shortestPathNodes2[1:]))
     edge_colors2 = ['r' if edge in shortestPathEdges2 or (edge[1], edge[0]) in shortestPathEdges2 else 'b' for edge in graph2.edges]
     nx.draw(graph2, pos=nx.circular_layout(graph2), with_labels=True, edge_color=edge_colors2)
