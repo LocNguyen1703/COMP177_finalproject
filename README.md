@@ -93,7 +93,7 @@ nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, edge_color=edge_co
 # Show the plot
 plt.show()
 ```
-
+![Graph Visualization](downloads/dynamic_routing.png)
 
 
 ### `dynamic_routing_20_Node.py`
@@ -133,6 +133,7 @@ nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, no
 plt.title("Graph with 5 Nodes Removed")
 plt.show()
 ```
+![Graph Visualization](downloads/dynamic_routing_20_node.png)
 
 
 
@@ -167,6 +168,8 @@ nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, node_color='lightb
 plt.title("50-Node Network")
 plt.show()
 ```
+
+![Graph Visualization](downloads/dynamic_routing_50_node.png)
 
 
 
@@ -211,6 +214,8 @@ nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, no
 plt.title("Graph with 20% Nodes Removed")
 plt.show()
 ```
+
+![Graph Visualization](downloads/dynamic_routing_node_generation.png)
 
 
 ---
@@ -260,6 +265,9 @@ nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), ax=axs[1], with_labe
 plt.show()
 ```
 
+![Graph Visualization](downloads/ResultsandAnalysis.png)
+
+
 ---
 
 ## Conclusion
@@ -294,6 +302,7 @@ nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
 plt.title("Graph with Weighted Edges")
 plt.show()
 ```
+![Graph Visualization](downloads/FutureWork.png)
 
 
 
