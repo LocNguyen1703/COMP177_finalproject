@@ -51,7 +51,6 @@ The project includes the following scripts:
   - Highlights the path in red using `matplotlib`.
 - **Output**: Graph visualization showing the shortest path.
 
-This script lays the groundwork for understanding dynamic routing by simulating a simple 9-node network. It uses an adjacency matrix to define the network's topology and Dijkstra's algorithm to compute the shortest path between two nodes. The output visually highlights the path, making it easy to see how routing decisions are made. This connects directly to what we've learned about routing algorithms in Chapter 5 of Computer Networking: A Top-Down Approach. It reminds me of how routers build and use routing tables to efficiently move data through a network.
 
 ![Graph Visualization](/images/dynamic_routing.png)
 
@@ -105,7 +104,6 @@ This script lays the groundwork for understanding dynamic routing by simulating 
   - Visualizes the graph with the shortest path highlighted, or indicates if no path exists.
 - **Output**: Visualizations of the original graph and graphs with failures.
 
-Scaling up to a 20-node network, this script dives deeper into fault tolerance by simulating scenarios where nodes are randomly removed. Watching how the shortest path adapts (or sometimes fails to exist) really ties into the importance of robust routing protocols like OSPF. It shows how networks stay connected even when parts go offline, which is something we discussed in Chapter 5 about how link-state protocols handle dynamic changes in topology.
 
 ![Graph Visualization](/images/dynamic_routing_20_node_graph.png)
 
@@ -149,8 +147,6 @@ Scaling up to a 20-node network, this script dives deeper into fault tolerance b
   - Computes and visualizes shortest paths dynamically.
 - **Output**: Graph visualizations similar to the 20-node script but applied to a larger network.
 
-This script takes things to another level by simulating a 50-node network. It’s a great way to explore how routing algorithms scale with network size and complexity. Working with a larger network really highlights the challenges of maintaining efficient routing as the system grows, similar to the hierarchical routing concepts we read about in Section 5.5. It’s a good reminder of why we need scalable solutions like BGP in the real world.
-
 
 ![Graph Visualization](/images/dynamic_routing_50_node_graph.png)
 
@@ -188,8 +184,6 @@ This script takes things to another level by simulating a 50-node network. It’
   - Computes and visualizes shortest paths before and after failures.
   - Provides feedback when no path exists.
 - **Output**: Dynamic visualizations of generated graphs and their changes.
-
-This script is the most flexible, allowing me to generate custom networks and simulate both node and edge failures. It’s like stress-testing a network to see how resilient it is under different conditions. Watching paths recalculate dynamically feels a lot like what we see with real-world routing protocols like OSPF or BGP. This ties into Section 4.4 of the textbook, where we talked about fault tolerance and why reliability is such a big deal in networking.
 
 
 ![Graph Visualization](/images/dynamic_routing_node_generation.png)
