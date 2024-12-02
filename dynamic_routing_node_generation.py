@@ -67,9 +67,10 @@ else:
     edge_colors = ['r' if edge in shortestPathEdges or (edge[1], edge[0]) in shortestPathEdges else 'b' for edge in graph.edges]
     nx.draw(graph, pos=nx.circular_layout(graph), with_labels=True, edge_color=edge_colors)
 
-percentSabotage = int(input("Enter the percentage (in normal integer) of edges to sabotage: "))
+percentNodesSabotage = int(input("Enter the percentage (in normal integer) of nodes to sabotage: "))
+percentEdgesSabotage = int(input("Enter the percentage (in normal integer) of edges to sabotage: "))
 
-graph2 = simulateBreakdown(graph, 0, percentSabotage)
+graph2 = simulateBreakdown(graph, percentEdgesSabotage, percentNodesSabotage)
 shortestPathNodes2 = Dijkstra(graph2, startNode, endNode)
 
 if not shortestPathNodes2: print("No shortest path found after sabotage.")
