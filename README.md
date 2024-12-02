@@ -39,10 +39,10 @@ The project includes the following scripts:
 - **Matplotlib**: For graph visualization.
 - make sure all the required libraries are installed using the following commands:
   - **Linux**
-      - sudo apt get update
-      - sudo apt install numpy
-      - sudo apt install matplotlib
-      - sudo apt install networkx
+      - sudo apt-get update
+      - sudo apt-get install numpy
+      - sudo apt-get install matplotlib
+      - sudo apt-get install networkx
   - **Windows**
       - pip install numpy
       - pip install matplotlib
