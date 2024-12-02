@@ -38,13 +38,13 @@ The project includes the following scripts:
 - **NumPy**: To define adjacency matrices and randomize network configurations.
 - **Matplotlib**: For graph visualization.
 - make sure all the required libraries are installed using the following commands:
-  **Linux**
+  - **Linux**
       - sudo apt get update
       - sudo apt install numpy
       - sudo apt install matplotlib
       - sudo apt install networkx
 
-  **Windows**
+- **Windows**
       - pip install numpy
       - pip install matplotlib
       - pip install networkx
