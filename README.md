@@ -37,6 +37,17 @@ The project includes the following scripts:
 - **NetworkX**: For graph creation and analysis.
 - **NumPy**: To define adjacency matrices and randomize network configurations.
 - **Matplotlib**: For graph visualization.
+- make sure all the required libraries are installed using the following commands:
+    **Linux**
+      - sudo apt get update
+      - sudo apt install numpy
+      - sudo apt install matplotlib
+      - sudo apt install networkx
+
+    **Windows**
+      - pip install numpy
+      - pip install matplotlib
+      - pip install networkx
 
 ---
 
@@ -185,16 +196,6 @@ The project includes the following scripts:
   - Provides feedback when no path exists.
 - **Output**: Dynamic visualizations of generated graphs and their changes.
 - **How to run**: 
-  - make sure all the required libraries are installed (numpy, matplotlib and networkx) using the following commands:
-    **Linux**
-      - sudo apt get update
-      - sudo apt install numpy
-      - sudo apt install matplotlib
-      - sudo apt install networkx
-    **Windows**
-      - pip install numpy
-      - pip install matplotlib
-      - pip install networkx
   - program will follow a user-interaction flow where it will ask for user inputs - requirements for allowed inputs: 
     - in general the program will only take numbers (it will take in floats, but will usually round them up).
     - when entering the percentage of nodes and edges to sabotage, do NOT enter "%" symbol, and do NOT use decimal format - only enter in normal integer format, and the program will convert to percentages or decimal format
