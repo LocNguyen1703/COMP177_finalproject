@@ -86,7 +86,7 @@ for node in nodes_to_remove_7:
 # Helper function to check shortest path and visualize
 def visualize_path(graph, title):
     if 0 in graph.nodes and 19 in graph.nodes:
-        shortestPathNodes = Dijkstra(graph, 0, 19)
+        shortestPathNodes = Dijkstra(graph, 0, 27)
         if shortestPathNodes:
             print(f"{title} Shortest path: {shortestPathNodes}")
             shortestPathEdges = tuple(zip(shortestPathNodes[:-1], shortestPathNodes[1:]))
