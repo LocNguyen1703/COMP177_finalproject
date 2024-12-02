@@ -43,8 +43,7 @@ The project includes the following scripts:
       - sudo apt install numpy
       - sudo apt install matplotlib
       - sudo apt install networkx
-
-- **Windows**
+  - **Windows**
       - pip install numpy
       - pip install matplotlib
       - pip install networkx
