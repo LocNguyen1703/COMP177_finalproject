@@ -4,7 +4,9 @@
 
 
 **Course**: COMP/ECPE 177 
+
 **Team Members**: Loc Nguyen, Richard Hull, Anna Noto
+
 **Semester**: Fall 2024
 
 ## Project Overview
