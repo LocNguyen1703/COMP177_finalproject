@@ -56,7 +56,9 @@ nparr = generateMatrix(numNodes, choice)
 graph = nx.from_numpy_array(nparr)
 
 startNode = int(input("Enter the sender's node: "))
+while startNode not in graph.nodes: startNode = int(input("Invalid node (node does not exist in network). Enter the sender's node: "))
 endNode = int(input("Enter the receiver's node: "))
+while endNode not in graph.nodes: endNode = int(input("Invalid node (node does not exist in network). Enter the receiver's node: "))
 
 shortestPathNodes = Dijkstra(graph, startNode, endNode)
 
@@ -82,7 +84,3 @@ else:
 
 # plt.axis=("equal")
 plt.show()
-
-
-#random code snippet
-print("Hello World")
