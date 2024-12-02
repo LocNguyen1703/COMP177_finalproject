@@ -59,41 +59,46 @@ The project includes the following scripts:
 
 This script lays the groundwork for understanding dynamic routing by simulating a simple 9-node network. It uses an adjacency matrix to define the network's topology and Dijkstra's algorithm to compute the shortest path between two nodes. The output visually highlights the path, making it easy to see how routing decisions are made. This connects directly to what we've learned about routing algorithms in Chapter 5 of Computer Networking: A Top-Down Approach. It reminds me of how routers build and use routing tables to efficiently move data through a network.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
-
-# Adjacency matrix for a simple 9-node network
-nparr = np.array([[0, 1, 1, 0, 0, 0, 0, 0, 0],
-                  [1, 0, 0, 1, 0, 1, 0, 0, 0],
-                  [1, 0, 0, 1, 0, 0, 0, 0, 0],
-                  [0, 1, 1, 0, 1, 0, 1, 0, 0],
-                  [0, 0, 0, 1, 0, 1, 0, 1, 1],
-                  [0, 1, 0, 0, 1, 0, 0, 0, 1],
-                  [0, 0, 0, 1, 0, 0, 0, 1, 0],
-                  [0, 0, 0, 0, 1, 0, 1, 0, 1],
-                  [0, 0, 0, 0, 1, 1, 0, 1, 0]])
-
-# Create the graph from the adjacency matrix
-graph = nx.from_numpy_array(nparr)
-
-# Compute the shortest path using Dijkstra's algorithm
-shortest_path = nx.dijkstra_path(graph, 2, 8)
-
-# Create an edge list for the shortest path
-shortest_path_edges = list(zip(shortest_path[:-1], shortest_path[1:]))
-
-# Set edge colors: red for the shortest path, blue for others
-edge_colors = ['r' if edge in shortest_path_edges or (edge[1], edge[0]) in shortest_path_edges else 'b' for edge in graph.edges]
-
-# Draw the graph with labels and edge colors
-nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, edge_color=edge_colors, node_color='lightblue', node_size=500, font_size=10)
-
-# Show the plot
-plt.show()
-```
 ![Graph Visualization](/images/dynamic_routing.png)
+
+<details>
+      <summary>Click to view the code</summary>
+    
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    
+    # Adjacency matrix for a simple 9-node network
+    nparr = np.array([[0, 1, 1, 0, 0, 0, 0, 0, 0],
+                      [1, 0, 0, 1, 0, 1, 0, 0, 0],
+                      [1, 0, 0, 1, 0, 0, 0, 0, 0],
+                      [0, 1, 1, 0, 1, 0, 1, 0, 0],
+                      [0, 0, 0, 1, 0, 1, 0, 1, 1],
+                      [0, 1, 0, 0, 1, 0, 0, 0, 1],
+                      [0, 0, 0, 1, 0, 0, 0, 1, 0],
+                      [0, 0, 0, 0, 1, 0, 1, 0, 1],
+                      [0, 0, 0, 0, 1, 1, 0, 1, 0]])
+    
+    # Create the graph from the adjacency matrix
+    graph = nx.from_numpy_array(nparr)
+    
+    # Compute the shortest path using Dijkstra's algorithm
+    shortest_path = nx.dijkstra_path(graph, 2, 8)
+    
+    # Create an edge list for the shortest path
+    shortest_path_edges = list(zip(shortest_path[:-1], shortest_path[1:]))
+    
+    # Set edge colors: red for the shortest path, blue for others
+    edge_colors = ['r' if edge in shortest_path_edges or (edge[1], edge[0]) in shortest_path_edges else 'b' for edge in graph.edges]
+    
+    # Draw the graph with labels and edge colors
+    nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, edge_color=edge_colors, node_color='lightblue', node_size=500, font_size=10)
+    
+    # Show the plot
+    plt.show()
+    ```
+</details>
 
 
 ### `dynamic_routing_20_Node.py`
@@ -108,33 +113,37 @@ plt.show()
 
 Scaling up to a 20-node network, this script dives deeper into fault tolerance by simulating scenarios where nodes are randomly removed. Watching how the shortest path adapts (or sometimes fails to exist) really ties into the importance of robust routing protocols like OSPF. It shows how networks stay connected even when parts go offline, which is something we discussed in Chapter 5 about how link-state protocols handle dynamic changes in topology.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
-import random
-
-# Adjacency matrix for a 20-node network
-nparr = np.random.randint(0, 2, (20, 20))
-np.fill_diagonal(nparr, 0)
-
-# Create the graph
-graph = nx.from_numpy_array(nparr)
-
-# Simulate node failures by randomly removing nodes
-nodes_to_remove = random.sample(range(20), 5)
-graph_removed = graph.copy()
-graph_removed.remove_nodes_from(nodes_to_remove)
-
-# Draw the graph with nodes removed
-nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, node_color='lightblue', node_size=500, font_size=10)
-
-# Show the plot
-plt.title("Graph with 5 Nodes Removed")
-plt.show()
-```
 ![Graph Visualization](/images/dynamic_routing_20_Node.png)
 
+<details> 
+      <summary>Click to view the code</summary>
+    
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    import random
+    
+    # Adjacency matrix for a 20-node network
+    nparr = np.random.randint(0, 2, (20, 20))
+    np.fill_diagonal(nparr, 0)
+    
+    # Create the graph
+    graph = nx.from_numpy_array(nparr)
+    
+    # Simulate node failures by randomly removing nodes
+    nodes_to_remove = random.sample(range(20), 5)
+    graph_removed = graph.copy()
+    graph_removed.remove_nodes_from(nodes_to_remove)
+    
+    # Draw the graph with nodes removed
+    nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, node_color='lightblue', node_size=500, font_size=10)
+    
+    # Show the plot
+    plt.title("Graph with 5 Nodes Removed")
+    plt.show()
+    ```
+</details>
 
 
 ### `dynamic_routing_50_node.py`
@@ -149,27 +158,31 @@ plt.show()
 This script takes things to another level by simulating a 50-node network. It’s a great way to explore how routing algorithms scale with network size and complexity. Working with a larger network really highlights the challenges of maintaining efficient routing as the system grows, similar to the hierarchical routing concepts we read about in Section 5.5. It’s a good reminder of why we need scalable solutions like BGP in the real world.
 
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
-
-# Generate a random 50-node adjacency matrix
-nparr = np.random.randint(0, 2, (50, 50))
-np.fill_diagonal(nparr, 0)
-
-# Create the graph
-graph = nx.from_numpy_array(nparr)
-
-# Draw the graph
-nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, node_color='lightblue', node_size=500, font_size=8)
-
-# Show the plot
-plt.title("50-Node Network")
-plt.show()
-```
-
 ![Graph Visualization](/images/dynamic_routing_50_node.png)
+
+<details> 
+      <summary>Click to view the code</summary>
+   
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    
+    # Generate a random 50-node adjacency matrix
+    nparr = np.random.randint(0, 2, (50, 50))
+    np.fill_diagonal(nparr, 0)
+    
+    # Create the graph
+    graph = nx.from_numpy_array(nparr)
+    
+    # Draw the graph
+    nx.draw(graph, pos=nx.spring_layout(graph), with_labels=True, node_color='lightblue', node_size=500, font_size=8)
+    
+    # Show the plot
+    plt.title("50-Node Network")
+    plt.show()
+    ```
+</details>
 
 
 
@@ -184,44 +197,55 @@ plt.show()
 
 This script is the most flexible, allowing me to generate custom networks and simulate both node and edge failures. It’s like stress-testing a network to see how resilient it is under different conditions. Watching paths recalculate dynamically feels a lot like what we see with real-world routing protocols like OSPF or BGP. This ties into Section 4.4 of the textbook, where we talked about fault tolerance and why reliability is such a big deal in networking.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
-import random
-
-def generate_matrix(dimension):
-    # Generate a random adjacency matrix for a graph
-    nparr = np.random.randint(0, 2, (dimension, dimension))
-    np.fill_diagonal(nparr, 0)
-    return nparr
-
-# Generate a random 9-node network
-nparr = generate_matrix(9)
-
-# Create the graph
-graph = nx.from_numpy_array(nparr)
-
-# Simulate node failures by removing 20% of the nodes
-nodes_to_remove = random.sample(range(9), int(0.2 * 9))
-graph_removed = graph.copy()
-graph_removed.remove_nodes_from(nodes_to_remove)
-
-# Draw the graph with nodes removed
-nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, node_color='lightblue', node_size=500, font_size=10)
-
-# Show the plot
-plt.title("Graph with 20% Nodes Removed")
-plt.show()
-```
 
 ![Graph Visualization](/images/dynamic_routing_node_generation.png)
+
+<details> 
+      <summary>Click to view the code</summary>
+   
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    import random
+    
+    def generate_matrix(dimension):
+        # Generate a random adjacency matrix for a graph
+        nparr = np.random.randint(0, 2, (dimension, dimension))
+        np.fill_diagonal(nparr, 0)
+        return nparr
+    
+    # Generate a random 9-node network
+    nparr = generate_matrix(9)
+    
+    # Create the graph
+    graph = nx.from_numpy_array(nparr)
+    
+    # Simulate node failures by removing 20% of the nodes
+    nodes_to_remove = random.sample(range(9), int(0.2 * 9))
+    graph_removed = graph.copy()
+    graph_removed.remove_nodes_from(nodes_to_remove)
+    
+    # Draw the graph with nodes removed
+    nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, node_color='lightblue', node_size=500, font_size=10)
+    
+    # Show the plot
+    plt.title("Graph with 20% Nodes Removed")
+    plt.show()
+    ```
+</details>
 
 
 ---
 
 ## Results and Analysis
 
+The results of the dynamic routing simulations demonstrated how network topology and node failures impact the ability to compute the shortest path in a network. In the original 9-node, 20-node, and 50-node networks, the Dijkstra algorithm successfully calculated the shortest paths between the source and destination nodes, as expected. Visualizations of these networks clearly highlighted the edges that were part of the shortest path, providing an intuitive understanding of the routing decisions made by the algorithm. As nodes were randomly removed to simulate network failures, the ability to maintain a valid path was tested. In the 20-node and 50-node networks, removing nodes resulted in certain paths becoming unavailable, showing the importance of fault tolerance in real-world routing protocols. The 50-node network demonstrated the scalability of the algorithm, where routing decisions were still computed, but the complexity increased with the larger network size. Additionally, the impact of node and edge failures on network connectivity was illustrated through side-by-side comparisons of networks before and after failures. These results emphasize the dynamic nature of routing in networks and highlight the need for resilient routing protocols that can adapt to changing network conditions.
+
+<br />
+<br />
+
+<ins> **If we break all that down:** </ins>
 ### Original Networks
 - Shortest paths are successfully computed for all original graphs.
 - Graph visualizations highlight paths clearly, demonstrating successful routing.
@@ -235,37 +259,41 @@ plt.show()
 - Larger networks demonstrate improved resilience to failures due to greater path redundancy.
 - Excessive node or edge failures may render some nodes unreachable.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
-import random
-
-# Create the original 20-node network
-nparr = np.random.randint(0, 2, (20, 20))
-np.fill_diagonal(nparr, 0)
-graph = nx.from_numpy_array(nparr)
-
-# Simulate node failures by removing 5 nodes
-nodes_to_remove = random.sample(range(20), 5)
-graph_removed = graph.copy()
-graph_removed.remove_nodes_from(nodes_to_remove)
-
-# Set up the plot with subplots for comparison
-fig, axs = plt.subplots(1, 2, figsize=(12, 6))
-
-# Original network
-axs[0].set_title("Original Network")
-nx.draw(graph, pos=nx.spring_layout(graph), ax=axs[0], with_labels=True, node_color='lightblue', node_size=500, font_size=8)
-
-# Network with failures
-axs[1].set_title("Network with 5 Nodes Removed")
-nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), ax=axs[1], with_labels=True, node_color='lightblue', node_size=500, font_size=8)
-
-plt.show()
-```
-
 ![Graph Visualization](/images/ResultsandAnalysis.png)
+
+<details>
+    <summary>Click to view the code</summary>
+    
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    import random
+    
+    # Create the original 20-node network
+    nparr = np.random.randint(0, 2, (20, 20))
+    np.fill_diagonal(nparr, 0)
+    graph = nx.from_numpy_array(nparr)
+    
+    # Simulate node failures by removing 5 nodes
+    nodes_to_remove = random.sample(range(20), 5)
+    graph_removed = graph.copy()
+    graph_removed.remove_nodes_from(nodes_to_remove)
+    
+    # Set up the plot with subplots for comparison
+    fig, axs = plt.subplots(1, 2, figsize=(12, 6))
+    
+    # Original network
+    axs[0].set_title("Original Network")
+    nx.draw(graph, pos=nx.spring_layout(graph), ax=axs[0], with_labels=True, node_color='lightblue', node_size=500, font_size=8)
+    
+    # Network with failures
+    axs[1].set_title("Network with 5 Nodes Removed")
+    nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), ax=axs[1], with_labels=True, node_color='lightblue', node_size=500, font_size=8)
+    
+    plt.show()
+    ```
+</details>
 
 
 ---
@@ -276,33 +304,38 @@ This project demonstrates the implementation of dynamic routing and network resi
 ---
 
 ## Future Work
-- Implement alternative algorithms (e.g., Bellman-Ford) for comparison.
-- Analyze edge-weighted graphs for more realistic simulations.
-- Expand failure simulations to include simultaneous node and edge removals.
+There are several potential directions for expanding this project. One area for improvement is to explore alternative routing algorithms, such as the Bellman-Ford algorithm, and compare their performance with Dijkstra’s algorithm, especially in terms of handling negative edge weights and slower convergence in larger networks. Additionally, incorporating edge weights to reflect network link costs would make the simulation more realistic, as real-world networks often prioritize certain paths over others. Below is an example of how the graph can be visualized with weighted edges. Further work could also include implementing dynamic routing protocols like OSPF or BGP, which adjust routes based on real-time network changes. Another extension would be to simulate more complex failure scenarios, such as simultaneous node and edge failures, to better mimic the challenges faced in large-scale distributed networks. Finally, integrating machine learning techniques to predict and optimize routing decisions based on network traffic patterns and conditions could be an exciting avenue for future development.
 
-```python
-import numpy as np
-import matplotlib.pyplot as plt
-import networkx as nx
 
-# Generate a random 9-node network with weighted edges
-nparr = np.random.randint(0, 10, (9, 9))  # Random weights between 0 and 10
-np.fill_diagonal(nparr, 0)
-
-# Create the graph with weights
-graph = nx.from_numpy_array(nparr)
-
-# Draw the graph with edge weights displayed
-pos = nx.spring_layout(graph)
-nx.draw(graph, pos, with_labels=True, node_color='lightblue', node_size=500, font_size=10)
-labels = nx.get_edge_attributes(graph, 'weight')
-nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
-
-# Show the plot
-plt.title("Graph with Weighted Edges")
-plt.show()
-```
 ![Graph Visualization](/images/FutureWork.png)
+
+
+<details> 
+    <summary>Click to view the code</summary>
+    
+    ```python
+    import numpy as np
+    import matplotlib.pyplot as plt
+    import networkx as nx
+    
+    # Generate a random 9-node network with weighted edges
+    nparr = np.random.randint(0, 10, (9, 9))  # Random weights between 0 and 10
+    np.fill_diagonal(nparr, 0)
+    
+    # Create the graph with weights
+    graph = nx.from_numpy_array(nparr)
+    
+    # Draw the graph with edge weights displayed
+    pos = nx.spring_layout(graph)
+    nx.draw(graph, pos, with_labels=True, node_color='lightblue', node_size=500, font_size=10)
+    labels = nx.get_edge_attributes(graph, 'weight')
+    nx.draw_networkx_edge_labels(graph, pos, edge_labels=labels)
+    
+    # Show the plot
+    plt.title("Graph with Weighted Edges")
+    plt.show()
+    ```
+</details>
 
 
 
