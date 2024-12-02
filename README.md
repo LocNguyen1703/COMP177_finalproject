@@ -133,7 +133,7 @@ nx.draw(graph_removed, pos=nx.spring_layout(graph_removed), with_labels=True, no
 plt.title("Graph with 5 Nodes Removed")
 plt.show()
 ```
-![Graph Visualization](/images/dynamic_routing_20_node.png)
+![Graph Visualization](/images/dynamic_routing_20_Node.png)
 
 
 
