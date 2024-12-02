@@ -107,7 +107,7 @@ This script lays the groundwork for understanding dynamic routing by simulating 
 
 Scaling up to a 20-node network, this script dives deeper into fault tolerance by simulating scenarios where nodes are randomly removed. Watching how the shortest path adapts (or sometimes fails to exist) really ties into the importance of robust routing protocols like OSPF. It shows how networks stay connected even when parts go offline, which is something we discussed in Chapter 5 about how link-state protocols handle dynamic changes in topology.
 
-![Graph Visualization](/images/dynamic_routing_20_Node.png)
+![Graph Visualization](/images/dynamic_routing_20_node_graph.png)
 
 <details> 
       <summary>Click to view the code</summary>
@@ -152,7 +152,7 @@ Scaling up to a 20-node network, this script dives deeper into fault tolerance b
 This script takes things to another level by simulating a 50-node network. It’s a great way to explore how routing algorithms scale with network size and complexity. Working with a larger network really highlights the challenges of maintaining efficient routing as the system grows, similar to the hierarchical routing concepts we read about in Section 5.5. It’s a good reminder of why we need scalable solutions like BGP in the real world.
 
 
-![Graph Visualization](/images/dynamic_routing_50_node.png)
+![Graph Visualization](/images/dynamic_routing_50_node_graph.png)
 
 <details> 
       <summary>Click to view the code</summary>
