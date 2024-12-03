@@ -60,6 +60,8 @@ The project includes the following scripts:
   - Computes and visualizes the shortest path using Dijkstra's algorithm.
   - Highlights the path in red using `matplotlib`.
 - **Output**: Graph visualization showing the shortest path.
+- **How to run**: 
+  - run Python command "python dynamic_routing.py" or "python3 dynamic_routing.py" to run the file 
 
 
 ![Graph Visualization](/images/dynamic_routing.png)
@@ -113,7 +115,8 @@ The project includes the following scripts:
   - Computes the shortest path between nodes 0 and 19.
   - Visualizes the graph with the shortest path highlighted, or indicates if no path exists.
 - **Output**: Visualizations of the original graph and graphs with failures.
-
+- **How to run**: 
+  - run Python command "python dynamic_routing_20_Node.py" or "python3 dynamic_routing_20_Node.py" to run the file 
 
 ![Graph Visualization](/images/dynamic_routing_20_node_graph.png)
 
@@ -156,7 +159,8 @@ The project includes the following scripts:
   - Simulates dynamic failures by removing nodes or edges.
   - Computes and visualizes shortest paths dynamically.
 - **Output**: Graph visualizations similar to the 20-node script but applied to a larger network.
-
+- **How to run**: 
+  - run Python command "python dynamic_routing_50_node.py" or "python3 dynamic_routing_50_node.py" to run the file 
 
 ![Graph Visualization](/images/dynamic_routing_50_node_graph.png)
 
@@ -195,6 +199,7 @@ The project includes the following scripts:
   - Provides feedback when no path exists.
 - **Output**: Dynamic visualizations of generated graphs and their changes.
 - **How to run**: 
+  - run Python command "python dynamic_routing_node_generation.py" or "python3 dynamic_routing_node_generation.py" to run the file 
   - program will follow a user-interaction flow where it will ask for user inputs - requirements for allowed inputs: 
     - in general the program will only take numbers (it will take in floats, but will usually round them up).
     - when entering the percentage of nodes and edges to sabotage, do NOT enter "%" symbol, and do NOT use decimal format - only enter in normal integer format, and the program will convert to percentages or decimal format
