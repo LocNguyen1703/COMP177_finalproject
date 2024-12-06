@@ -61,7 +61,7 @@ The project includes the following scripts:
   - Highlights the path in red using `matplotlib`.
 - **Output**: Graph visualization showing the shortest path.
 - **How to run**: 
-  - run Python command "python dynamic_routing.py" or "python3 dynamic_routing.py" to run the file 
+  - run Python command "python dynamic_routing.py" or "python3 dynamic_routing.py" to run the file
 
 
 ![Graph Visualization](/images/dynamic_routing.png)
